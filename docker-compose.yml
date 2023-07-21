@@ -1,0 +1,24 @@
+version: "3.7"
+
+volumes:
+  postgres_data:
+
+services:
+
+  postgres:
+    image: postgres:latest
+    container_name: blog_database
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=application
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    healthcheck:
+      test: /usr/bin/pg_isready
+      interval: 5s
+      timeout: 10s
+      retries: 120
+  
