@@ -1,11 +1,12 @@
+"""
+Based on [Create a Flask Application With Google Login](https://realpython.com/flask-google-login/#creating-a-google-client) article
+"""
 import requests
 import json
 from . import userbp, GOOGLE_DISCOVERY_URL, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET
 from flask import current_app, redirect, request, url_for
 from app.userbp.user import User
 from flask_login import (
-    LoginManager,
-    current_user,
     login_required,
     login_user,
     logout_user,
