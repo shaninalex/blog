@@ -4,7 +4,7 @@ from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String, 
 
 DATABASE_URL = 'postgresql+psycopg2://user:password@localhost:5432/application'
 
-engine = create_engine(DATABASE_URL, echo=True)
+engine = create_engine(DATABASE_URL)
 
 metadata = MetaData()
 

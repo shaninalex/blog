@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+
+        Total: {{ total }}
+        <nav class="pagination" role="navigation" aria-label="pagination">
+            <ul class="pagination-list">
+                {% for page in pages %}
+                <li>
+                    <a href="?page={{ page }}" class="pagination-link" aria-label="Goto page {{page}}">{{page}}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </nav>
+
+        {% for post in posts %}
+        <div class="card mb-6">
+            <div class="card-content">
+                <div class="content">
+                    <h1 class="title has-text-black is-3">{{ post.title }}</h1>
+                    <p class="has-text-dark">{{ post.body }}</p>
+                    <div class="is-flex is-justify-content-space-between is-full">
+                        <time datetime="{{post.created_at.strftime('%Y-%m-%d')}}">{{ post.created_at.strftime('%d %b,
+                            %Y') }}</time>
+                        <a href="/{{ post.id }}" class="button">Read more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</section>
+{% endblock %}
