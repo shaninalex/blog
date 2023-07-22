@@ -1,3 +1,4 @@
+import os
 import click
 from flask.cli import with_appcontext
 from flask import g, current_app
@@ -16,9 +17,7 @@ from sqlalchemy import (
 )
 
 
-DATABASE_URL = "postgresql+psycopg2://user:password@localhost:5432/application"
-
-engine = create_engine(DATABASE_URL)
+engine = create_engine(os.getenv("DATABASE_URL"))
 
 metadata = MetaData()
 

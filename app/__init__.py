@@ -1,3 +1,4 @@
+import os
 from oauthlib.oauth2 import WebApplicationClient
 from flask import Flask,render_template
 from flask_login import LoginManager
@@ -11,8 +12,7 @@ def create_app() -> Flask:
     app = Flask(__name__)
     init_db()
     
-    # app.secret_key = os.environ.get("SECRET_KEY") or os.urandom(24)
-    app.secret_key = "SECRET_KEY"
+    app.secret_key = os.environ.get("SECRET_KEY") or os.urandom(64)
 
     login_manager = LoginManager()
     login_manager.init_app(app)
