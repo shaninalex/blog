@@ -23,14 +23,23 @@
 
         <div class="navbar-end">
             <div class="navbar-item">
-                <div class="buttons">
-                    <a class="button is-primary">
-                        <strong>Sign up</strong>
-                    </a>
-                    <a class="button is-light">
-                        Log in
+                
+                {% if current_user.is_authenticated %}
+                <div class="is-flex is-align-items-center">
+                    <figure class="image is-32x32 is-flex is-align-items-center mr-3">
+                        <img class="is-rounded" src="{{ current_user.profile_pic }}" alt="{{ current_user.name }}">
+                    </figure>
+                    <a href="/user/logout" class="button is-light">
+                        <i class="fa fa-sign-out" aria-hidden="true"></i>
                     </a>
                 </div>
+                {% else %}
+                <div class="buttons">
+                    <a href="/user/login" class="button is-light">
+                        login with google
+                    </a>
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>
