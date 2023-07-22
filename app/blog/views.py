@@ -42,6 +42,25 @@ def get_posts():
                                pages=[i for i in range(1, pages + 1)])
 
 
+@blog.route("/post/<int:id>", methods=["GET"])
+def post_detail(id):
+    try:
+        post_id = int(id)
+        if post_id < 0:
+            return render_template("404.html"), 404
+        
+        with engine.connect() as connection:
+            post_query = select(posts).where(posts.c.id == post_id)
+            post_result = connection.execute(post_query).first()
+            return render_template("blog/post.html", post=post_result)
+
+    except ValueError:
+        return render_template("404.html"), 404
+
+
+
+
+
 # @blog.route("/tmp/create", methods=['GET'])
 # def tmp_create():
 #     with engine.connect() as connection:
