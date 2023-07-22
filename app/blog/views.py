@@ -25,8 +25,6 @@ def get_posts():
         if ppage:
             query = query.offset(POSTS_PER_PAGE * ppage)
         results = connection.execute(query).all()
-        if not results:
-            return render_template("404.html"), 404
 
         # pagination
         qry = select(func.count()).select_from(posts)  # TODO: where(posts.c.public=True)

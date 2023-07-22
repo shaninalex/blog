@@ -4,37 +4,51 @@
 <section class="section">
     <div class="container">
 
-        {% for post in posts %}
-        <div class="card mb-6">
-            <div class="card-content">
-                <div class="content">
-                    <a href="{{ url_for('blog.post_detail', id=post.id) }}">
-                        <h1 class="title has-text-black is-3">
-                            {{ post.title }}
-                        </h1>
-                    </a>
-                    <p class="has-text-dark">{{ post.body }}</p>
-                    <div class="is-flex is-justify-content-space-between is-full">
-                        <time datetime="{{post.created_at.strftime('%Y-%m-%d')}}">{{ post.created_at.strftime('%d %b,
-                            %Y') }}</time>
-                        <a href="{{ url_for('blog.post_detail', id=post.id) }}" class="button">Read more</a>
+        <div class="columns">
+            <div class="column is-three-quarters">
+                {% if posts %}
+                {% for post in posts %}
+                <div class="card mb-6">
+                    <div class="card-content">
+                        <div class="content">
+                            <a href="{{ url_for('blog.post_detail', id=post.id) }}">
+                                <h1 class="title has-text-black is-3">
+                                    {{ post.title }}
+                                </h1>
+                            </a>
+                            <p class="has-text-dark">{{ post.body }}</p>
+                            <div class="is-flex is-justify-content-space-between is-full">
+                                <time datetime="{{post.created_at.strftime('%Y-%m-%d')}}">{{
+                                    post.created_at.strftime('%d %b,
+                                    %Y') }}</time>
+                                <a href="{{ url_for('blog.post_detail', id=post.id) }}" class="button">Read more</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                {% endfor %}
+
+                Total: {{ total }}
+                <nav class="pagination" role="navigation" aria-label="pagination">
+                    <ul class="pagination-list">
+                        {% for page in pages %}
+                        <li>
+                            <a href="?page={{ page }}" class="pagination-link"
+                                aria-label="Goto page {{page}}">{{page}}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </nav>
+                {% else %}
+                <div class="notification">
+                    There are no posts yeat...
+                </div>
+                {% endif %}
+            </div>
+            <div class="column is-one-quarter">
+                sidebar
             </div>
         </div>
-        {% endfor %}
-
-        Total: {{ total }}
-        <nav class="pagination" role="navigation" aria-label="pagination">
-            <ul class="pagination-list">
-                {% for page in pages %}
-                <li>
-                    <a href="?page={{ page }}" class="pagination-link" aria-label="Goto page {{page}}">{{page}}</a>
-                </li>
-                {% endfor %}
-            </ul>
-        </nav>
-
     </div>
 </section>
 {% endblock %}

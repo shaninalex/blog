@@ -5,4 +5,8 @@ app = create_app()
 
 DEBUG = bool(int(os.getenv("DEBUG")))
 
-app.run(debug=DEBUG)
+app.run(
+    debug=DEBUG,
+    host="0.0.0.0",
+    port=5000
+)

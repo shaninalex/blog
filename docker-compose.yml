@@ -10,7 +10,7 @@ services:
     container_name: blog_backend
     command: python run.py
     volumes:
-      - ./:/usr/src/app/
+      - ./app/:/usr/src/app/app/
     ports:
       - 5000:5000
     env_file:

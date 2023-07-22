@@ -1,5 +1,13 @@
 .vscode
 env/
 venv/
-
 __pycache__/
+.dockerignore
+.env
+.env.example
+.git
+.gitignore
+.idea
+docker-compose.yml
+Makefile
+Dockerfile
